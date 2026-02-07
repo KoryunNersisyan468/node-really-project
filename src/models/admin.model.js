@@ -5,8 +5,6 @@ import fs from 'fs';
 import path from 'path';
 import { Model } from 'objection';
 
-class AdminModel extends Model {
-
-}
+class AdminModel extends Model {}
 
 export default AdminModel;
