@@ -1,4 +1,4 @@
-import config from './src/valuables.config';
+import config from './src/config/variables.config';
 const { PSQL } = config;
 export default {
   development: {
@@ -9,8 +9,8 @@ export default {
       host: PSQL.HOST,
       database: PSQL.DATABASE,
       user: PSQL.USER,
-      password: PSQL.PASSWORD,
-    },
+      password: PSQL.PASSWORD
+    }
   },
   production: {
     client: 'pg',
@@ -20,7 +20,7 @@ export default {
       host: PSQL.HOST,
       database: PSQL.DATABASE,
       user: PSQL.USER,
-      password: PSQL.PASSWORD,
-    },
-  },
+      password: PSQL.PASSWORD
+    }
+  }
 };

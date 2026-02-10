@@ -1,10 +1,10 @@
-// NPM modules 
+// NPM modules
 
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 
 // Local Modules
 
@@ -12,6 +12,7 @@ import config from './config/variables.config';
 import Api from './api';
 import PSQLStorage from './storage/psql.storage';
 
+const { DISABLE_REQUEST_LOG } = config;
 class App {
   constructor() {
     this.app = express();
@@ -19,28 +20,25 @@ class App {
     this.app.use('/upload', express.static('upload'));
   }
 
- 
   async init() {
     await App._initializeStorage();
     this._setRequestLogger();
     this._setCors();
     this._setRequestParser();
     this._initializeApi();
-    this._setErrorHandler();
+    // this._setErrorHandler();
   }
 
-  
   _setRequestLogger() {
     if (DISABLE_REQUEST_LOG !== '1') {
       this.app.use(morgan('dev'));
     }
   }
 
- 
   _setCors() {
     this.app.use(
       cors({
-        origin: "*",
+        origin: '*',
         methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
         allowedHeaders: ['Authorization', 'Content-Type', 'Origin'],
         credentials: true,
@@ -50,28 +48,24 @@ class App {
     );
   }
 
-  
   _setRequestParser() {
     this.app.use(bodyParser.json());
     const options = { limit: '500mb', extended: false };
-    this.app.use(bodyParser.urlencoded(options));
+    this.app.use(bodyParser.urlencoded(options)); //anpayman nayi
     this.app.use(express.json());
   }
 
- 
   static _initializeStorage() {
     return PSQLStorage.init();
   }
 
- 
   _initializeApi() {
     this.app.use('/api/v1', Api);
   }
 
- 
-  _setErrorHandler() {
-    this.app.use(ErrorHandlerMiddleware.init);
-  }
+  // _setErrorHandler() {
+  //   this.app.use(ErrorHandlerMiddleware.init);
+  // }
 }
 
 export default new App();

@@ -2,7 +2,7 @@
 import knex from 'knex';
 import bCrypt from 'bcryptjs';
 import knexConfigs from '../knex.configs';
-import config from '../src/valuables.config';
+import config from '../src/config/variables.config';
 const { ADMIN_PASSWORD } = config;
 const { ADMIN_LOGIN } = config;
 
@@ -13,7 +13,6 @@ async function seed(pg) {
       password: bCrypt.hashSync(ADMIN_PASSWORD, bCrypt.genSaltSync(10), null)
     }
   ]);
-  
 }
 
 async function init() {

@@ -15,15 +15,15 @@ const config = {
     HOST: process.env.PSQL_HOST,
     USER: process.env.PSQL_USER,
     DATABASE: process.env.PSQL_DATABASE,
-    PASSWORD: process.env.PSQL_PASSWORD,
+    PASSWORD: process.env.PSQL_PASSWORD
   },
 
   AUTH: {
     JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET,
     JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
     ACCESS_TOKEN_ACTIVE_TIME: process.env.ACCESS_TOKEN_ACTIVE_TIME || '2m',
-    REFRESH_TOKEN_ACTIVE_TIME: process.env.REFRESH_TOKEN_ACTIVE_TIME || '1d',
-  },
+    REFRESH_TOKEN_ACTIVE_TIME: process.env.REFRESH_TOKEN_ACTIVE_TIME || '1d'
+  }
 };
 
 export default config;
