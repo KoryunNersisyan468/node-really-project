@@ -15,4 +15,8 @@ export default class AdminService {
   static async deleteDream(id) {
     return await AdminModel.deleteDream(id);
   }
+  static async upload(file) {
+    const source = file.path;
+    return await AdminModel.upload(source);
+  }
 }

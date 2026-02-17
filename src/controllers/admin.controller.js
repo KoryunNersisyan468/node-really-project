@@ -46,4 +46,15 @@ export default class AdminController {
       next(error);
     }
   }
+  static async upload(req, res, next) {
+    try {
+      const file = req.file;
+      const {filename, originalname, path} = file;
+      const dirname = "http://localhost:3000/" + path;
+      // const result = await AdminService.upload(filename, originalname, path);
+      SuccessHandlerUtil.handleList(res, next, {originalname, filename, dirname,success: true});
+    } catch (error) {
+      next(error);
+    }
+  }
 }

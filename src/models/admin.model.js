@@ -39,6 +39,14 @@ class AdminModel extends Model {
   static deleteDream(id) {
     return AdminModel.query().select('*').where('id', id).del().returning('*');
   }
+  static upload(image, id) {
+     return AdminModel.query()
+      .select('*')
+      .where('id', id)
+      .update(image)
+      .returning('*');
+  }
+  
 }
 
 export default AdminModel;
